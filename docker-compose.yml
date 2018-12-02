@@ -1,0 +1,12 @@
+version: '3'
+services:
+  tomcat:
+    build: my-rest-api
+    security_opt:
+    - apparmor:unconfined 
+    ports:
+    - "8080"
+    volumes:
+    - logvolume01:/var/log
+volumes:
+  logvolume01: {}
