@@ -3,10 +3,9 @@ services:
   tomcat:
     build: my-rest-api
     security_opt:
-    - apparmor:unconfined 
+    - apparmor:unconfined
+    hostname: localhost 
     ports:
     - "8080"
     volumes:
-    - logvolume01:/var/log
-volumes:
-  logvolume01: {}
+    - ./my-rest-api/logs/:/usr/local/tomcat/logs
