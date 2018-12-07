@@ -4,8 +4,11 @@ services:
     build: my-rest-api
     security_opt:
     - apparmor:unconfined
-    hostname: localhost 
     ports:
-    - "8080"
+    - "8080:8080"
     volumes:
     - ./my-rest-api/logs/:/usr/local/tomcat/logs
+  mongo:
+    build: mongo
+    ports:
+    - "27017:27017"
