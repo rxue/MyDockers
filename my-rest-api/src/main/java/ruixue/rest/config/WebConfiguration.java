@@ -6,7 +6,7 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 @Configuration
 @EnableWebMvc
-@ComponentScan(basePackages = "ruixue.rest.controller")
-public class WebConfig {
+@ComponentScan(basePackages = "ruixue.rest")
+public class WebConfiguration {
 
 }
