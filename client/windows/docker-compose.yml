@@ -1,0 +1,13 @@
+version: '3'
+services:
+  tomcat:
+    build: ${SERVICE_DIR}/rest/masterdata
+    security_opt:
+    - apparmor:unconfined
+    ports:
+    - "8080:8080"
+  mongo:
+    build: ${SERVICE_DIR}/database/mongo
+    ports:
+    - "27017:27017"
+    container_name: mongodb
