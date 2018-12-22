@@ -1,15 +1,14 @@
 version: '3'
 services:
-  tomcat:
-    build: ${SERVICE_DIR}/rest/masterdata
-    security_opt:
-    - apparmor:unconfined
-    ports:
-    - "8080:8080"
-    - "8000:8000"
-    container_name: tomcat
-  mongo:
-    build: ${SERVICE_DIR}/database/mongo
+  mongodb:
+    image: mongo:latest
     ports:
     - "27017:27017"
     container_name: mongodb
+  mongodb_seed:
+    build: ${SERVICE_DIR}/database/mongodb_seed
+    links: 
+    - mongodb
+
+networks:
+  backend:
