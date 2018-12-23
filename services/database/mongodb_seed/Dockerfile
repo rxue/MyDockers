@@ -1,6 +1,5 @@
 FROM mongo:latest
 COPY shops.json /home/
-COPY import.sh /home/
 #RUN ["chmod", "+x", "/home/import.sh"]
 #ENV MONGO_INITDB_ROOT_USERNAME=mongo
 #ENV MONGO_INITDB_ROOT_PASSWORD=mongo

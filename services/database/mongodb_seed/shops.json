@@ -1,2 +1,3 @@
-{"_id":{"$oid":"5c0a3c5ee4dd08ffe8d8423d"},"name":"Prisma","area":"Sello"}
-{"_id":{"$oid":"5c0a3c6ae4dd08ffe8d8423e"},"name":"Lidl","area":"Sello"}
+{"_id":1,"country":"Finland","area":"Sello","name":"Prisma"}
+{"_id":2,"country":"Finland","area":"Sello","name":"Lidl"}
+{"_id":3,"country":"Finland","area":"Sello","name":"K-Citymarket"}
