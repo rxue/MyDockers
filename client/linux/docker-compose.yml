@@ -1,14 +1,11 @@
-version: '3'
+version: '3.4'
 services:
   mongodb:
     image: mongo:latest
-    ports:
+    ports: 
     - "27017:27017"
-    container_name: mongodb
+    container_name: mongodb 
   mongodb_seed:
     build: ${SERVICE_DIR}/database/mongodb_seed
-    links: 
+    links:
     - mongodb
-
-networks:
-  backend:
