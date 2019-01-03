@@ -2,13 +2,13 @@ package ruixue.rest.entity;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document(collection="shops")
-public class Shop {
+@Document(collection="citie"
+		+ "s")
+public class City {
 	@Id
 	private Integer id;
 	private String country;
-	private String name;
-	private String area;
+	private String city;
 	public Integer getId() {
 		return id;
 	}
@@ -21,17 +21,11 @@ public class Shop {
 	public void setCountry(String country) {
 		this.country = country;
 	}
-	public String getName() {
-		return name;
+	public String getCity() {
+		return city;
 	}
-	public void setName(String name) {
-		this.name = name;
-	}
-	public String getArea() {
-		return area;
-	}
-	public void setArea(String area) {
-		this.area = area;
+	public void setCity(String city) {
+		this.city = city;
 	}
 	
 }
