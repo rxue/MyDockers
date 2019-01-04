@@ -1,7 +1,7 @@
 import { combineReducers } from "redux";
-import cities from "./insertion_reducer";
-import shops from "./insertion_reducer";
+//import shops from "./insertion_reducer";
+import insertion_data from "./insertion_reducer";
 
-const rootReducer = combineReducers({ cities, shops });
+const rootReducer = combineReducers({ insertion_data });
 
 export default rootReducer;

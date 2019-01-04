@@ -2,7 +2,10 @@ export function citylist() {
   return dispatch =>
     fetch("http://localhost:8080/masterdata/cities")
       .then(response => response.json())
-      .then(json => dispatch({ type: "CITY_LIST", payload: json }));
+      .then(json => {
+        console.log(json);
+        dispatch({ type: "CITY_LIST", payload: json });
+      });
 }
 
 export function shoplist() {

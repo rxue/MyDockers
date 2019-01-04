@@ -1,4 +1,5 @@
 export default function(state = {}, action) {
+  //console.log("reduce cases");
   switch (action.type) {
     case "CITY_LIST":
       return { ...state, cities: action.payload };

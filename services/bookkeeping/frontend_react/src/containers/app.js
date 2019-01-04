@@ -7,6 +7,7 @@ import ShopList from "../components/insertion_shoplist";
 
 class App extends Component {
   componentDidMount() {
+    console.log("mount");
     this.props.citylist();
     this.props.shoplist();
   }
@@ -16,7 +17,7 @@ class App extends Component {
       ? shops.map(shop => <option key={shop.id} value={shop.name} />)
       : null; */
   render() {
-    console.log(this.props);
+    console.log("render:" + this.props);
     return (
       <div>
         <CityList {...this.props} />
@@ -31,10 +32,13 @@ class App extends Component {
 }
 
 const mapStateToProps = state => {
-  return { data: { ...state.cities, ...state.shops } }; //Use of spread operator: https://www.youtube.com/watch?v=NCwa_xi0Uuc&t=1721s
+  console.log("map state to props:" + state.shops);
+  return { data: state.insertion_data }; //Use of spread operator: https://www.youtube.com/watch?v=NCwa_xi0Uuc&t=1721s
+  //return { city_data: state.cities, shop_data: state.shops };
 };
 
 const mapDispathToProps = dispatch => {
+  console.log("map dispatch to props");
   return bindActionCreators({ citylist, shoplist }, dispatch);
 };
 

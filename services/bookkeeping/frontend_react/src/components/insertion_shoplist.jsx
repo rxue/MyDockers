@@ -1,10 +1,10 @@
 import React from "react";
 
 const ShopList = ({ data }) => {
-  console.log(data);
-  const renderShops = shops =>
-    shops
-      ? shops.map(shop => (
+  console.log("shops to component:" + data.shops);
+  const renderShops = sho =>
+    sho
+      ? sho.map(shop => (
           <option key={shop.id} value={shop.id}>
             {shop.name}
           </option>
