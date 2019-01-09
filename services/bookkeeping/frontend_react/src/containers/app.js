@@ -12,8 +12,7 @@ class App extends Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    console.log("Component did update", this.state);
-    //this.props.localshoplist(this.state);
+    console.log("Component did update");
   }
 
   findShops(event) {
@@ -21,10 +20,6 @@ class App extends Component {
     this.props.localshoplist(event.target.value);
   }
 
-  /* renderShops = shops =>
-    shops
-      ? shops.map(shop => <option key={shop.id} value={shop.name} />)
-      : null; */
   render() {
     console.log("render:", this.props);
     return (
@@ -34,10 +29,7 @@ class App extends Component {
           cities={this.props.data.cities}
         />
         <ShopList {...this.props} />
-        {/* <input list="shop" placeholder="shop" />
-        <datalist id="shop">
-          {this.renderShops(this.props.shop_data.shops)}
-        </datalist> */}
+        {/* Use of spread operator: https://www.youtube.com/watch?v=NCwa_xi0Uuc&t=1721s*/}
       </div>
     );
   }
@@ -45,8 +37,7 @@ class App extends Component {
 
 const mapStateToProps = state => {
   console.log("map state to props", state);
-  return { data: state.insertion_data }; //Use of spread operator: https://www.youtube.com/watch?v=NCwa_xi0Uuc&t=1721s
-  //return { city_data: state.cities, shop_data: state.shops };
+  return { data: state.insertion_data };
 };
 
 const mapDispathToProps = dispatch => {
