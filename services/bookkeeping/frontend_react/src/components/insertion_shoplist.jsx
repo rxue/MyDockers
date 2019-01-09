@@ -1,7 +1,7 @@
 import React from "react";
 
 const ShopList = ({ data }) => {
-  console.log("shops to component:" + data.shops);
+  console.log("shops to component:", data);
   const renderShops = sho =>
     sho
       ? sho.map(shop => (
@@ -12,7 +12,7 @@ const ShopList = ({ data }) => {
       : null;
   return (
     <div>
-      <select name="shop">{renderShops(data.shops)}</select>
+      <select name="shop">{renderShops(data.localshops)}</select>
       {/* this.handleChange is just a reference */}
     </div>
   );

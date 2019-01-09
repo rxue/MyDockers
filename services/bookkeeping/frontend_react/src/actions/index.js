@@ -17,3 +17,31 @@ export function shoplist() {
     ] //data retrieved from server
   };
 }
+
+export function localshoplist(city) {
+  let d;
+  switch (city) {
+    case "Helsinki":
+      d = [
+        { id: 1, name: "Lidl", area: "City Center" },
+        { id: 2, name: "K-Supermarket", area: "Kamppi" }
+      ];
+      break;
+    case "Beijing":
+      d = [
+        { id: 1, name: "Wang Fujing Store", area: "Wang Fujing Street" },
+        { id: 2, name: "Xi Dan", area: "Xi Dan Book Store" }
+      ];
+      break;
+    default:
+      d = [
+        { id: 1, name: "Lidl", area: "Sello" },
+        { id: 2, name: "Prisma", area: "Sello" }
+      ];
+  }
+  return dispatch =>
+    dispatch({
+      type: "LOCAL_SHOP_LIST",
+      payload: d
+    });
+}

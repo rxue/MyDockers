@@ -9,12 +9,12 @@ const renderCities = cityList =>
       ))
     : null;
 
-const CityList = ({ data }) => {
-  console.log("cities into component: " + data.cities);
-
+const CityList = props => {
   return (
     <div>
-      <select name="city">{renderCities(data.cities)}</select>
+      <select name="city" onChange={e => props.findShops(e)}>
+        {renderCities(props.cities)}
+      </select>
       {/* this.handleChange is just a reference */}
     </div>
   );
