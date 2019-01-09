@@ -36,6 +36,6 @@ export function localshoplist(city) {
   return dispatch =>
     dispatch({
       type: "LOCAL_SHOP_LIST",
-      payload: cityShops[city]
+      payload: citiShops[city] ? citiShops[city] : citiShops.default
     });
 }
