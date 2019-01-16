@@ -1,4 +1,4 @@
-package ruixue.rest.repository;
+package com.rx.rest.dao;
 
 
 import org.springframework.data.mongodb.repository.MongoRepository;

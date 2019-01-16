@@ -1,20 +1,10 @@
 package ruixue.rest.entity;
-import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document(collection="citie"
-		+ "s")
-public class City {
-	@Id
-	private Integer id;
+@Document(collection="cities")
+public class City extends BaseEntity {
 	private String country;
 	private String city;
-	public Integer getId() {
-		return id;
-	}
-	public void setId(Integer id) {
-		this.id = id;
-	}
 	public String getCountry() {
 		return country;
 	}

@@ -1,4 +1,4 @@
-package ruixue.rest.config;
+package com.rx.rest.config;
 
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -6,7 +6,7 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 @Configuration
 @EnableWebMvc
-@ComponentScan(basePackages = "ruixue.rest")
+@ComponentScan(basePackages = "com.rx.rest")
 public class WebConfiguration {
 
 }

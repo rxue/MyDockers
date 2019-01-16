@@ -1,4 +1,4 @@
-package ruixue.rest;
+package com.rx.rest;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletRegistration;
@@ -19,7 +19,7 @@ public class MyRestAPIInitializer implements WebApplicationInitializer {
 
         // Load Spring web application configuration
         AnnotationConfigWebApplicationContext ac = new AnnotationConfigWebApplicationContext();
-        ac.setConfigLocation("ruixue.rest.config");
+        ac.setConfigLocation("com.rx.rest.config");
         servletCxt.addListener(new ContextLoaderListener(ac));
 
         // Create and register the DispatcherServlet

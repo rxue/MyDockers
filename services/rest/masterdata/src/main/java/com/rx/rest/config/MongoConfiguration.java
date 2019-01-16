@@ -1,4 +1,4 @@
-package ruixue.rest.config;
+package com.rx.rest.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.mongodb.config.AbstractMongoConfiguration;
@@ -12,7 +12,7 @@ import com.mongodb.MongoClient;
  *
  */
 @Configuration
-@EnableMongoRepositories(basePackages = "ruixue.rest.repository")
+@EnableMongoRepositories(basePackages = "com.rx.rest.dao")
 public class MongoConfiguration extends AbstractMongoConfiguration {
 
 	@Override
