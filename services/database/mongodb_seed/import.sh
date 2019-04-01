@@ -1,3 +1,4 @@
 #!/bin/bash
-mongoimport --host mongodb --db masterdata --collection cities --file /home/cities.json
-mongoimport --host mongodb --db masterdata --collection shops --file /home/shops.json
+ls .
+mongoimport --host mongodb --db masterdata --collection cities --file cities.json
+mongoimport --host mongodb --db masterdata --collection shops --file shops.json
