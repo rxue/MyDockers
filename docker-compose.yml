@@ -1,14 +1,11 @@
-version: '3'
+version: '3.4'
 services:
-  tomcat:
-    build: my-rest-api
-    security_opt:
-    - apparmor:unconfined
-    ports:
-    - "8080:8080"
-    volumes:
-    - ./my-rest-api/logs/:/usr/local/tomcat/logs
-  mongo:
-    build: mongo
-    ports:
+  mongodb:
+    image: mongo:latest
+    ports: 
     - "27017:27017"
+    container_name: mongodb 
+  mongodb_seed:
+    build: services/database/mongodb_seed
+    links:
+    - mongodb
