@@ -8,8 +8,16 @@ services:
     # provide your credentials here
     - MONGO_INITDB_ROOT_USERNAME=root
     - MONGO_INITDB_ROOT_PASSWORD=root
-    container_name: mongodb 
+    container_name: mongodb
+    networks:
+    - mongo   
   mongodb_seed:
     build: services/database/mongodb_seed
-    links:
+    networks:
+    - mongo
+    depends_on:
     - mongodb
+networks:
+    mongo:
+        driver: bridge
+
