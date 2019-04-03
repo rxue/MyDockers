@@ -3,6 +3,6 @@
 
 ## Encountered Bugs
 ### Failure of JSON Data Import During Build of Mongo Seed in Windows
-[Solution](https://stackoverflow.com/questions/55470358/how-to-seed-a-docker-container-in-windows/55470819#55470819)
+[Solution](https://stackoverflow.com/questions/55470358/how-to-seed-a-docker-container-in-windows/55470819#55470819): Use `vim` to set the [file format](https://vim.fandom.com/wiki/File_format) to *unix* with command - `set ff=unix` 
 
 
