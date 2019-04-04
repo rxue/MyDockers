@@ -1,4 +1,4 @@
-package ruixue.rest.entity;
+package com.rx.entity;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document(collection="cities")
