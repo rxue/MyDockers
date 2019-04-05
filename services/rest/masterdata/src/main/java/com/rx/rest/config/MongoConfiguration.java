@@ -17,17 +17,14 @@ import com.mongodb.ServerAddress;
 @Configuration
 @EnableMongoRepositories(basePackages = "com.rx.rest.dao")
 public class MongoConfiguration extends AbstractMongoConfiguration {
-	
-	private MongoCredential mongoCredential() {
-		return MongoCredential.createCredential("reader", "masterdata", "reader".toCharArray());
-	}
-	
 	private ServerAddress serverAddress() {
 		return new ServerAddress("localhost", 27017);
 	}
+	private MongoCredential mongoCredential() {
+		return MongoCredential.createCredential("reader", "admin", "reader".toCharArray());
+	}
 	private MongoClientOptions mongoClientOptions() {
 		MongoClientOptions.Builder builder = new MongoClientOptions.Builder();
-		builder.applicationName("test");
 		return builder.build();
 	}
 
