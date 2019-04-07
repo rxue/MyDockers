@@ -1,16 +1,18 @@
 package com.rx.entity;
 
+import java.math.BigInteger;
+
 import org.springframework.data.annotation.Id;
 
 public abstract class BaseEntity {
 	@Id
-	private Integer id;
+	private BigInteger id;
 
-	public Integer getId() {
+	public BigInteger getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(BigInteger id) {
 		this.id = id;
 	}
 	
