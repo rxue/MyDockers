@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.rx.rest.dao.ShopsRepository;
 
-import ruixue.rest.entity.Shop;
+import com.rx.entity.Shop;
 
 @RestController
 public class ShopsController {

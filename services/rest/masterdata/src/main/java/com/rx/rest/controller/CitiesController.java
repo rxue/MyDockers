@@ -7,11 +7,8 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.rx.entity.City;
 import com.rx.rest.dao.CitiesRepository;
-import com.rx.rest.dao.ShopsRepository;
-
-import ruixue.rest.entity.City;
-import ruixue.rest.entity.Shop;
 
 @CrossOrigin(origins = "*")
 @RestController
@@ -20,7 +17,6 @@ public class CitiesController {
 	private CitiesRepository repository;
 	@RequestMapping("/cities")
 	public List<City> getShops() {
-		System.out.println("DEBUG");
 		return repository.findAll();
 	}
 }
