@@ -21,7 +21,7 @@ public class MongoConfiguration extends AbstractMongoConfiguration {
 		return new ServerAddress("localhost", 27017);
 	}
 	private MongoCredential mongoCredential() {
-		return MongoCredential.createCredential("reader", "admin", "reader".toCharArray());
+		return MongoCredential.createCredential("root", "admin", "root".toCharArray());
 	}
 	private MongoClientOptions mongoClientOptions() {
 		MongoClientOptions.Builder builder = new MongoClientOptions.Builder();
