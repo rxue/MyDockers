@@ -2,8 +2,6 @@ package com.rx.rest.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.mongodb.config.AbstractMongoConfiguration;
-import org.springframework.data.mongodb.core.convert.DbRefResolver;
-import org.springframework.data.mongodb.core.convert.DefaultDbRefResolver;
 import org.springframework.data.mongodb.core.convert.DefaultMongoTypeMapper;
 import org.springframework.data.mongodb.core.convert.MappingMongoConverter;
 import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;
@@ -46,9 +44,7 @@ public class MongoConfiguration extends AbstractMongoConfiguration {
 	 */
 	@Override
 	public MappingMongoConverter mappingMongoConverter() throws Exception {
-
-		DbRefResolver dbRefResolver = new DefaultDbRefResolver(mongoDbFactory());
-		MappingMongoConverter converter = new MappingMongoConverter(dbRefResolver, mongoMappingContext());
+		MappingMongoConverter converter = super.mappingMongoConverter();
 		converter.setTypeMapper(new DefaultMongoTypeMapper(null));
 		return converter;
 	}
