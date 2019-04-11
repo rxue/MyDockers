@@ -4,7 +4,6 @@ COPY data/auth.js .
 COPY data/shops.json .
 COPY data/cities.json .
 COPY import.sh .
-#ENV MONGO_INITDB_ROOT_USERNAME=mongo
-#ENV MONGO_INITDB_ROOT_PASSWORD=mongo
-#CMD mongoimport --host mongodb --db masterdata --collection cities --file /home/cities.json
+ADD https://github.com/ufoscout/docker-compose-wait/releases/download/2.2.1/wait /wait
+RUN chmod +x /wait
 CMD ["/bin/bash", "-c", "source import.sh"]
