@@ -17,7 +17,7 @@ import com.mongodb.ServerAddress;
  *
  */
 @Configuration
-@EnableMongoRepositories(basePackages = "com.rx.rest.dao")
+@EnableMongoRepositories(basePackages = "com.rx.repository")
 public class MongoConfiguration extends AbstractMongoConfiguration {
 	private ServerAddress serverAddress() {
 		return new ServerAddress("localhost", 27017);

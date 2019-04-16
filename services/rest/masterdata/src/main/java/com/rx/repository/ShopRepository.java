@@ -1,9 +1,9 @@
-package com.rx.rest.dao;
+package com.rx.repository;
 
 
 import org.springframework.data.mongodb.repository.MongoRepository;
 
 import com.rx.entity.Shop;
 
-public interface ShopsRepository extends MongoRepository<Shop, Integer> {
+public interface ShopRepository extends MongoRepository<Shop, Integer> {
 }
