@@ -2,6 +2,8 @@ package com.rx.rest.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -30,7 +32,7 @@ public class CityController {
 	
 	@PostMapping("")
 	@ResponseStatus(value=HttpStatus.CREATED)
-	public City createCity(@RequestBody City city) {
+	public City createCity(@Valid @RequestBody City city) {
 		cityService.addCity(city);
 		return city;
 	}
