@@ -6,7 +6,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Document(collection="cities")
 public class City extends BaseEntity {
 	private String country;
-	@NotNull
+	@NotNull(message="city cannot be empty")
 	private String city;
 	public String getCountry() {
 		return country;

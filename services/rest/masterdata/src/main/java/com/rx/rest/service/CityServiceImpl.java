@@ -22,7 +22,9 @@ public class CityServiceImpl implements CityService {
 	@Override
 	public City getCityById(Integer cityId) throws ResourceNotFoundException {
 		return citiesRepository.findById(cityId)
-				.orElseThrow(() -> new ResourceNotFoundException("City with ID " + cityId + " does not exist"));
+				//.orElseThrow(() -> new ResourceNotFoundException("City with ID " + cityId + " does not exist"));
+				.orElseThrow(ResourceNotFoundException::new);
+
 	}
 
 	@Override
