@@ -3,7 +3,9 @@ package com.rx.rest.error;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.ServletException;
@@ -13,23 +15,28 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.util.StringUtils;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.context.request.RequestAttributes;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.HandlerExceptionResolver;
 import org.springframework.web.servlet.ModelAndView;
 
-public class DefaultErrorAttributes implements ErrorAttributes, HandlerExceptionResolver {
+import com.rx.rest.error.ErrorAttributes;
+
+public class DefaultErrorAttributes implements ErrorAttributes {
 	public static final String ERROR_ATTRIBUTE = DefaultErrorAttributes.class.getName()
 			+ ".ERROR";
 
 	@Override
 	public Map<String, Object> getErrorAttributes(WebRequest webRequest, boolean includeStackTrace) {
 		Map<String, Object> errorAttributes = new LinkedHashMap<>();
-		errorAttributes.put("timestamp", LocalDateTime.now());
+		errorAttributes.put("timestamp", LocalDateTime.now().toString());
 		addStatus(errorAttributes, webRequest);
 		addErrorDetails(errorAttributes, webRequest, includeStackTrace);
 		addPath(errorAttributes, webRequest);
+		System.out.println("get error attributes" + errorAttributes);
 		return errorAttributes;
 	}
 	private void addStatus(Map<String, Object> errorAttributes,
@@ -77,7 +84,7 @@ public class DefaultErrorAttributes implements ErrorAttributes, HandlerException
 			return;
 		}
 		if (result.hasErrors()) {
-			errorAttributes.put("errors", result.getAllErrors());
+			addFieldErrors(result.getAllErrors(), errorAttributes);
 			errorAttributes.put("message",
 					"Validation failed for object='" + result.getObjectName()
 							+ "'. Error count: " + result.getErrorCount());
@@ -87,6 +94,15 @@ public class DefaultErrorAttributes implements ErrorAttributes, HandlerException
 		}
 	}
 
+	private void addFieldErrors(List<ObjectError> objectErrors, Map<String, Object> errorAttributes) {
+		List<FieldErrorWrapper> fieldErrors = new ArrayList<>();
+		objectErrors.forEach(e -> {
+			if (e instanceof FieldError) {
+				fieldErrors.add(new FieldErrorWrapper((FieldError)e));
+			}
+		});
+		if (!fieldErrors.isEmpty()) errorAttributes.put("errors", fieldErrors);
+	}
 	private BindingResult extractBindingResult(Throwable error) {
 		if (error instanceof BindingResult) {
 			return (BindingResult) error;
@@ -125,15 +141,6 @@ public class DefaultErrorAttributes implements ErrorAttributes, HandlerException
 	private <T> T getAttribute(RequestAttributes requestAttributes, String name) {
 		return (T) requestAttributes.getAttribute(name, RequestAttributes.SCOPE_REQUEST);
 	}
-	@Override
-	public ModelAndView resolveException(HttpServletRequest request, HttpServletResponse response, Object handler,
-			Exception ex) {
-		storeErrorAttributes(request, ex);
-		return null;
-	}
-	private void storeErrorAttributes(HttpServletRequest request, Exception ex) {
-		request.setAttribute(ERROR_ATTRIBUTE, ex);
-		
-	}
+
 
 }
