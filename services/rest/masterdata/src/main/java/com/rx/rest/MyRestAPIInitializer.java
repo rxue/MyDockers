@@ -24,7 +24,8 @@ public class MyRestAPIInitializer implements WebApplicationInitializer {
 
         // Create and register the DispatcherServlet
         DispatcherServlet servlet = new DispatcherServlet(ac);
-        //servlet.setThrowExceptionIfNoHandlerFound(true);
+        servlet.setEnableLoggingRequestDetails(true);
+        servlet.setThrowExceptionIfNoHandlerFound(true);
         ServletRegistration.Dynamic registration = servletCxt.addServlet("dispatcher", servlet);
         registration.setLoadOnStartup(1);
         registration.addMapping("/*");

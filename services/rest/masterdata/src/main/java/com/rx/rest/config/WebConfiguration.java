@@ -1,16 +1,13 @@
 package com.rx.rest.config;
 
 import java.util.List;
+import java.util.Optional;
 
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.HandlerExceptionResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
-
-import com.rx.rest.error.DefaultErrorAttributes;
-
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.json.Jackson2ObjectMapperBuilder;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
@@ -26,7 +23,7 @@ public class WebConfiguration implements WebMvcConfigurer {
 	 */
 	@Override
 	public void extendHandlerExceptionResolvers(List<HandlerExceptionResolver> resolvers) {
-		resolvers.add(0, new DefaultErrorAttributes());
+		//resolvers.add(0, new DefaultErrorAttributes());
 	}
 	@Override
 	public void extendMessageConverters(List<HttpMessageConverter<?>> converters) {
