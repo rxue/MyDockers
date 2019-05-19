@@ -16,15 +16,6 @@ import org.springframework.http.converter.json.MappingJackson2HttpMessageConvert
 @EnableWebMvc
 @ComponentScan(basePackages = "com.rx.rest")
 public class WebConfiguration implements WebMvcConfigurer {
-	/**
-	 * registered the DefaultErrorAttributes to the list of
-	 * HandlerExceptionResolver
-	 * 
-	 */
-	@Override
-	public void extendHandlerExceptionResolvers(List<HandlerExceptionResolver> resolvers) {
-		//resolvers.add(0, new DefaultErrorAttributes());
-	}
 	@Override
 	public void extendMessageConverters(List<HttpMessageConverter<?>> converters) {
 		converters.forEach(e -> {
