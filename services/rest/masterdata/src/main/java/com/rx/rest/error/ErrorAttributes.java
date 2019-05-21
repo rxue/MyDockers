@@ -1,0 +1,34 @@
+package com.rx.rest.error;
+
+import java.util.Map;
+
+import org.springframework.web.context.request.WebRequest;
+
+/**
+ * Provides access to error attributes which can be logged or presented to the user.
+ *
+ * @author Phillip Webb
+ * @since 2.0.0
+ * @see DefaultErrorAttributes
+ */
+public interface ErrorAttributes {
+
+	/**
+	 * Returns a {@link Map} of the error attributes. The map can be used as the model of
+	 * an error page {@link ModelAndView}, or returned as a {@link ResponseBody}.
+	 * @param webRequest the source request
+	 * @param includeStackTrace if stack trace elements should be included
+	 * @return a map of error attributes
+	 */
+	Map<String, Object> getErrorAttributes(WebRequest webRequest,
+			boolean includeStackTrace);
+
+	/**
+	 * Return the underlying cause of the error or {@code null} if the error cannot be
+	 * extracted.
+	 * @param webRequest the source request
+	 * @return the {@link Exception} that caused the error or {@code null}
+	 */
+	Throwable getError(WebRequest webRequest);
+
+}

@@ -1,22 +1,22 @@
 package com.rx.rest.controller;
 
-import javax.servlet.http.HttpServletRequest;
+import java.util.Enumeration;
+import java.util.Map;
 
-import org.springframework.web.bind.annotation.GetMapping;
+import javax.servlet.http.HttpServletRequest;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.context.request.WebRequest;
 
-import com.rx.rest.error.ErrorRest;
+import com.rx.rest.error.DefaultErrorAttributes;
 
 @RestController
-@RequestMapping(value = "handler")
 public class ErrorController {
 	
-	@RequestMapping(value = "errors")
-    public ErrorRest renderErrorPage(HttpServletRequest httpRequest) {
-		System.out.println("DEBUG::come to error page");
-		ErrorRest er = new ErrorRest();
-		er.setError("errr");
-        return er;
+	@RequestMapping(value = "/error")
+    public Map<String,Object> renderError(HttpServletRequest httpRequest, WebRequest webRequest) {
+		return new DefaultErrorAttributes().getErrorAttributes(webRequest, false);
     }
+	
+	
 }

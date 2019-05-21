@@ -48,6 +48,7 @@
 		<url-pattern>/rest/*</url-pattern>
 	</servlet-mapping>
 	<error-page>
-	    <location>/WEB-INF/error.html</location>
+		<exception-type>java.lang.Throwable</exception-type>
+	    <location>/rest/error</location>
 	</error-page>
 </web-app>
