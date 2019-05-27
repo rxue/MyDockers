@@ -28,6 +28,6 @@ public class MyRestAPIInitializer implements WebApplicationInitializer {
         servlet.setThrowExceptionIfNoHandlerFound(true);
         ServletRegistration.Dynamic registration = servletCxt.addServlet("dispatcher", servlet);
         registration.setLoadOnStartup(1);
-        registration.addMapping("/*");
+        registration.addMapping("/rest/*");
     }
 }

@@ -22,8 +22,8 @@ public class WebConfiguration implements WebMvcConfigurer {
 	 * 
 	 */
 	@Override
-	public void extendHandlerExceptionResolvers(List<HandlerExceptionResolver> resolvers) {
-		//resolvers.add(0, new DefaultErrorAttributes());
+	public void configureHandlerExceptionResolvers(List<HandlerExceptionResolver> resolvers) {
+		resolvers.add((request, response, handler, ex) -> null);
 	}
 	@Override
 	public void extendMessageConverters(List<HttpMessageConverter<?>> converters) {

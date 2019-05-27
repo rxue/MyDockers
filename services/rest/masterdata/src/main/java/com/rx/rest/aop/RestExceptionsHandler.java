@@ -17,9 +17,10 @@ public class RestExceptionsHandler extends ResponseEntityExceptionHandler {
 
 	@Override
 	protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex, HttpHeaders headers, HttpStatus status, WebRequest request) {		request.setAttribute(WebUtils.ERROR_STATUS_CODE_ATTRIBUTE, status.value(), RequestAttributes.SCOPE_REQUEST);
+		System.out.println("DEBUG::");
 		request.setAttribute(WebUtils.ERROR_EXCEPTION_ATTRIBUTE, ex, RequestAttributes.SCOPE_REQUEST);
 		ErrorAttributesBuilder errorAttributesBuilder = new ErrorAttributesBuilder(request, false);
-		BindingResult re = ((MethodArgumentNotValidException) ex).getBindingResult();
-		return new ResponseEntity<>(re.getAllErrors().get(0), headers, status);
+		//BindingResult re = ((MethodArgumentNotValidException) ex).getBindingResult();
+		return new ResponseEntity<>(errorAttributesBuilder.build(), headers, status);
 	}
 }
