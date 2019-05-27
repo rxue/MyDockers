@@ -1,8 +1,10 @@
 package com.rx.rest.config;
 
+import java.util.Enumeration;
 import java.util.List;
 import java.util.Optional;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.context.annotation.Bean;
@@ -43,7 +45,7 @@ public class WebConfiguration implements WebMvcConfigurer {
 	}
 	@Override
 	public void configureHandlerExceptionResolvers(List<HandlerExceptionResolver> resolvers) {
-		resolvers.add(0, (request, response, handler, ex) -> null);
+		resolvers.add((request, response, handler, ex) -> null);
 	}
 	
 	
