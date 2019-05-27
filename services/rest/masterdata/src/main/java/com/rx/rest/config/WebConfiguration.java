@@ -1,7 +1,6 @@
 package com.rx.rest.config;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -16,15 +15,6 @@ import org.springframework.http.converter.json.MappingJackson2HttpMessageConvert
 @EnableWebMvc
 @ComponentScan(basePackages = "com.rx.rest")
 public class WebConfiguration implements WebMvcConfigurer {
-	/**
-	 * registered the DefaultErrorAttributes to the list of
-	 * HandlerExceptionResolver
-	 * 
-	 */
-	@Override
-	public void configureHandlerExceptionResolvers(List<HandlerExceptionResolver> resolvers) {
-		resolvers.add((request, response, handler, ex) -> null);
-	}
 	@Override
 	public void extendMessageConverters(List<HttpMessageConverter<?>> converters) {
 		converters.forEach(e -> {
