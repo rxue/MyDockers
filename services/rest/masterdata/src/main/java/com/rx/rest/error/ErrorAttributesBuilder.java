@@ -112,7 +112,7 @@ public class ErrorAttributesBuilder {
 
 			@Override
 			public String getPath() {
-				String path = getAttribute("javax.servlet.error.request_uri");
+				String path = getAttribute(RequestDispatcher.ERROR_REQUEST_URI);
 				return path;
 			}
 			

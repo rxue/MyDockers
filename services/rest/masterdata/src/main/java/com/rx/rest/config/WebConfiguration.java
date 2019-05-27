@@ -43,10 +43,4 @@ public class WebConfiguration implements WebMvcConfigurer {
 		    builder.failOnUnknownProperties(true);
 		converter.setObjectMapper(builder.build());
 	}
-	@Override
-	public void configureHandlerExceptionResolvers(List<HandlerExceptionResolver> resolvers) {
-		resolvers.add((request, response, handler, ex) -> null);
-	}
-	
-	
 }
