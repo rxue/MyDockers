@@ -8,9 +8,7 @@
 * The `WebMvcConfigurer`'s pertinent methods are kept unchanged as default, meaning neither `configureHandlerExceptionResolvers` nor `extendHandlerExceptionResolvers` is overridden
 
 #### Control Flow
-When a `MethodArgumentNotValidException` is thrown, `processHandlerException` in `DispatcherServlet` is called. The instance varaible `handlerExceptionResolvers` of the `DispatcherServlet` is a list with only one element, an instance of `HandlerExceptionResolverComposite`. The `HandlerExceptionResolverComposite` contains the configured list of `HandlerExceptionResolver`s, i.e. the `resolvers` instance variable of `HandlerExceptionResolverComposite`.
-
-Back to the `HandlerExceptionResolverComposite.processHandlerException`, inside which the list of `HandlerExceptionResolver`, i.e. the `HandlerExceptionResolverComposite`, is looped through by invoking the `resolveException`:
+When a `MethodArgumentNotValidException` is thrown, `processHandlerException` in `DispatcherServlet` is called. The instance varaible `handlerExceptionResolvers` of the `DispatcherServlet` is a list with only one element, an instance of `HandlerExceptionResolverComposite`. The list of `HandlerExceptionResolver`, i.e. the `HandlerExceptionResolverComposite`, is looped through by invoking the `resolveException` method:
 
 ```
 @Nullable
@@ -24,11 +22,45 @@ Back to the `HandlerExceptionResolverComposite.processHandlerException`, inside 
     ModelAndView exMv = null;
     if (this.handlerExceptionResolvers != null) {
       for (HandlerExceptionResolver resolver : this.handlerExceptionResolvers) {
-        exMv = resolver.resolveException(request, response, handler, ex);
+        exMv = resolver.resolveException(request, response, handler, ex);//IMPORTANT!
         if (exMv != null) {
           break;
         }
       }
     }
 ```    
+
+##### The Source Code of `HandlerExceptionResolverComposite.resolveException`
+
+```
+@Override
+  @Nullable
+  public ModelAndView resolveException(HttpServletRequest request, HttpServletResponse response,
+      @Nullable Object handler,Exception ex) {
+
+    if (this.resolvers != null) {
+      for (HandlerExceptionResolver handlerExceptionResolver : this.resolvers) {
+        ModelAndView mav = handlerExceptionResolver.resolveException(request, response, handler, ex);
+        if (mav != null) {
+          return mav;
+        }
+      }
+    }
+    return null;
+  }
+```
+The instance variable, `this.resolvers`, is the list of `HandlerExceptionResolver` configured by the `configureHandlerExceptionResolver` or `extendsHandlerExceptionResolver` of the `WebMvcConfigurer`. Based of the [documentation of `HandlerExceptionResolver.configureHandlerExceptionResolver`](https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/web/servlet/config/annotation/WebMvcConfigurer.html#configureHandlerExceptionResolvers-java.util.List-):
+
+> If it is left empty, the framework configures a default set of resolvers, see [WebMvcConfigurationSupport.addDefaultHandlerExceptionResolvers(List)](https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/web/servlet/config/annotation/WebMvcConfigurationSupport.html#addDefaultHandlerExceptionResolvers-java.util.List-)
+
+Then based on the documentation of [WebMvcConfigurationSupport.addDefaultHandlerExceptionResolvers(List)](https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/web/servlet/config/annotation/WebMvcConfigurationSupport.html#addDefaultHandlerExceptionResolvers-java.util.List-), the default list of `HandlerExceptionResolver`s are the following:
+
+* `ExceptionHandlerExceptionResolver` for handling exceptions through ExceptionHandler methods.
+* `ResponseStatusExceptionResolver` for exceptions annotated with ResponseStatus.
+* `DefaultHandlerExceptionResolver` for resolving known Spring exception types
+
+The `ExceptionHandlerExceptionResolver.resolveException` invokes the *exception handling* method in `ResponseEntityExceptionHandler` indirectly.
+
+
+
 
