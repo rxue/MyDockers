@@ -61,6 +61,7 @@ Then based on the documentation of [WebMvcConfigurationSupport.addDefaultHandler
 
 The `ExceptionHandlerExceptionResolver.resolveException` invokes the *exception handling* method in `ResponseEntityExceptionHandler` indirectly.
 
+Inside the `HandlerExceptionResolverComposite.resolveException`, the looping through the list of `HandlerExceptionResolver` is a *variant of chain of responsibility*.
 
 
 
