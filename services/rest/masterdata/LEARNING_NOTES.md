@@ -59,7 +59,9 @@ Then based on the documentation of [WebMvcConfigurationSupport.addDefaultHandler
 * `ResponseStatusExceptionResolver` for exceptions annotated with ResponseStatus.
 * `DefaultHandlerExceptionResolver` for resolving known Spring exception types
 
-The `ExceptionHandlerExceptionResolver.resolveException` invokes the *exception handling* method in `ResponseEntityExceptionHandler` indirectly.
+The `ExceptionHandlerExceptionResolver.resolveException` invokes the *exception handling* method in `ResponseEntityExceptionHandler` indirectly and, as `ExceptionHandlerExceptionResolver.resolveException` returns an instance of `ModelAndView`, the loop through `this.resolvers` in `handlerExceptionResolverComposite.resolveException` terminates instead of continuing to `resolveException` with `ResponseStatusExceptionResolver`.
+
+##### Design Patterns Applied in `HandlerExceptionResolverComposite.resolveException`
 
 Inside the `HandlerExceptionResolverComposite.resolveException`, the looping through the list of `HandlerExceptionResolver` is a *variant of chain of responsibility*.
 
